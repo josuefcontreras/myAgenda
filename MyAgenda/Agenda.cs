@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MyAgenda
 {
@@ -17,6 +18,29 @@ namespace MyAgenda
 
         public bool insertar(string nombre, string telefono)
         {
+            try
+            {
+                string query = $"INSERT INTO directorio(nombre, telefono) VALUES({nombre}, {telefono})";
+                cn = Conexion.connectar();
+                cn.Open();
+                cmd = new SqliteCommand(query, cn);
+                if(cmd.ExecuteNonQuery() > 0)
+                {
+                    return true;
+                }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                if(cn != null && cn.State == ConnectionState.Open)
+                {
+                    cn.Close();
+                }
+
+            }
             return false;
         }
         public DataTable consultar ()
@@ -38,7 +62,10 @@ namespace MyAgenda
 
         private void nombresColumnas()
         {
-
+            table = new DataTable();
+            table.Columns.Add("Id");
+            table.Columns.Add("Nombre");
+            table.Columns.Add("Telefono");
         }
     }
 }
