@@ -106,6 +106,22 @@ namespace MyAgenda
         }
         public bool actualizar(int id, string nombre, string telefono)
         {
+            try
+            {
+                string query = $"UPDATE directorio SET nombre='{nombre}', telefono='{telefono}' WHERE id = '{id}'";
+                cn = Conexion.connectar();
+                cn.Open();
+                cmd = new SqliteCommand(query, cn);
+                if (cmd.ExecuteNonQuery() > 0) return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                if (cn != null && cn.State == ConnectionState.Open) cn.Close();
+            }
             return false;
         }
 
