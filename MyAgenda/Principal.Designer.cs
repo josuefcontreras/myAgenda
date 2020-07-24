@@ -50,6 +50,7 @@
             this.btnRegistrar.TabIndex = 0;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // btnModificar
             // 
@@ -59,6 +60,7 @@
             this.btnModificar.TabIndex = 1;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
@@ -68,6 +70,7 @@
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // lblTitulo
             // 
@@ -126,15 +129,23 @@
             this.txtFiltrar.Name = "txtFiltrar";
             this.txtFiltrar.Size = new System.Drawing.Size(100, 20);
             this.txtFiltrar.TabIndex = 9;
+            this.txtFiltrar.TextChanged += new System.EventHandler(this.txtFiltrar_TextChanged);
             // 
             // dgvAgenda
             // 
+            this.dgvAgenda.AllowUserToAddRows = false;
+            this.dgvAgenda.AllowUserToDeleteRows = false;
+            this.dgvAgenda.AllowUserToResizeColumns = false;
+            this.dgvAgenda.AllowUserToResizeRows = false;
+            this.dgvAgenda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAgenda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAgenda.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvAgenda.Location = new System.Drawing.Point(0, 164);
             this.dgvAgenda.Name = "dgvAgenda";
             this.dgvAgenda.Size = new System.Drawing.Size(495, 209);
             this.dgvAgenda.TabIndex = 10;
+            this.dgvAgenda.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAgenda_CellClick);
+            this.dgvAgenda.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAgenda_CellDoubleClick);
             // 
             // Principal
             // 

@@ -11,10 +11,10 @@ namespace MyAgenda
     class Conexion
     {
        public static SqliteConnection connectar()
-        {
+       {
             string db = Application.StartupPath + "\\myagenda.db";
             SqliteConnection cn = new SqliteConnection($"Data Source={db}");
             return cn;
-        }
+       }
     }
 }
