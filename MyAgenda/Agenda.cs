@@ -20,7 +20,7 @@ namespace MyAgenda
         {
             try
             {
-                string query = $"INSERT INTO directorio(nombre, telefono) VALUES({nombre}, {telefono})";
+                string query = $"INSERT INTO directorio(nombre, telefono) VALUES('{nombre}', '{telefono}')";
                 cn = Conexion.connectar();
                 cn.Open();
                 cmd = new SqliteCommand(query, cn);
@@ -75,6 +75,29 @@ namespace MyAgenda
         }
         public bool eliminar(int id)
         {
+            try
+            {
+                string query = $"DELETE FROM directorio WHERE id = '{id}'";
+                cn = Conexion.connectar();
+                cn.Open();
+                cmd = new SqliteCommand(query, cn);
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                if (cn != null && cn.State == ConnectionState.Open)
+                {
+                    cn.Close();
+                }
+
+            }
             return false;
         }
         public DataTable filtrar(string filtro)
