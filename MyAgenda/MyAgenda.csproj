@@ -76,6 +76,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agenda.cs" />
+    <Compile Include="Conexion.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>
