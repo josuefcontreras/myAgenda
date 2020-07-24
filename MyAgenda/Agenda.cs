@@ -45,7 +45,33 @@ namespace MyAgenda
         }
         public DataTable consultar ()
         {
-            return new DataTable();
+            try
+            {
+                string query = "SELECT * FROM Directorio";
+                cn = Conexion.connectar();
+                cn.Open();
+                cmd = new SqliteCommand(query, cn);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    table.Rows.Add(new object[] { reader["id"], reader["nombre"], reader["telefono"] });
+                }
+                reader.Close();
+                cn.Close();
+                return table;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                if(cn != null && cn.State == ConnectionState.Open)
+                {
+                    cn.Close();
+                }
+            }
+            return table;
         }
         public bool eliminar(int id)
         {
